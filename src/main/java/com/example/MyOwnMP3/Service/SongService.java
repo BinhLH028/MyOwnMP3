@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SongService {
 
@@ -16,5 +18,9 @@ public class SongService {
     public Page<Song> GetAllSong(){
         Page<Song> tmp = songRepository.findAll(PageRequest.of(0,1));
         return tmp;
+    }
+
+    public List<Song> GetSongsByName(String n) {
+        return songRepository.FindSongsByName(n);
     }
 }
