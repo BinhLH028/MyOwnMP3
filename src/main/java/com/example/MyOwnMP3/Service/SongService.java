@@ -28,7 +28,7 @@ public class SongService {
     }
 
     public List<Song> GetSongsByName(String n) {
-        return songRepository.findByNameContainingIgnoreCase(n);
+        return songRepository.findByTitleContainingIgnoreCase(n);
     }
 
 
@@ -45,12 +45,12 @@ public class SongService {
         return input;
     }
 
-    public void HandleUploadMultipleSong(List<MultipartFile> lstFiles) {
-        List<Song>  lstSongs = new ArrayList<>();
-        for (MultipartFile song:lstFiles) {
-            lstSongs.add(new Song(song.getOriginalFilename(),
-                    Const.MUSIC_DIR + ConvertStringToURL(song.getOriginalFilename()),1));
-        }
-        songRepository.saveAll(lstSongs);
-    }
+//    public void HandleUploadMultipleSong(List<MultipartFile> lstFiles) {
+//        List<Song>  lstSongs = new ArrayList<>();
+//        for (MultipartFile song:lstFiles) {
+//            lstSongs.add(new Song(song.getOriginalFilename(),
+//                    Const.MUSIC_DIR + ConvertStringToURL(song.getOriginalFilename()),1));
+//        }
+//        songRepository.saveAll(lstSongs);
+//    }
 }
