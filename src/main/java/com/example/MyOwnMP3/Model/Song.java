@@ -1,10 +1,7 @@
 package com.example.MyOwnMP3.Model;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "songs")
 public class Song {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "song_id")
     private Integer song_id;
     @Column(name = "title")
@@ -36,4 +34,10 @@ public class Song {
     private Integer playlist_id;
     @Column(name = "love")
     private Integer love;
+
+    public Song(String title, String song_url, Integer artist_id) {
+        this.title = title;
+        this.song_url = song_url;
+        this.artist_id = artist_id;
+    }
 }
