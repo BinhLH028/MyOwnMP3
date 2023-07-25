@@ -15,12 +15,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/API/Song")
+@RequestMapping(value = "/API/song")
 public class SongController {
 
     @Autowired
     private SongService songService;
-    @GetMapping(value = "/getAllSong")
+    @GetMapping(value = "/getallsong")
     public ResponseEntity<?> GetAllSong() {
         return new ResponseEntity<>(songService.GetAllSong(), HttpStatus.OK);
     }
@@ -70,36 +70,36 @@ public class SongController {
         return "redirect:/";
     }
 
-//    @PostMapping("/")
-//    public String handleMultipleFileUpload(@RequestParam("lstSongs") List<MultipartFile> lstSongs,
-//                                   RedirectAttributes redirectAttributes) {
-//        String FTP_ADDRESS = Const.FPT_ADDRESS;
-//        String LOGIN = Const.DATABASE_NAME;
-//        String PSW = Const.FPT_PW;
-//
-//
-//        FTPClient con = null;
-//
-//        try {
-//            con = new FTPClient();
-//            con.connect(FTP_ADDRESS);
-//
-//            if (con.login(LOGIN, PSW)) {
-//                con.enterLocalPassiveMode(); // important!
-//                con.setFileType(FTP.BINARY_FILE_TYPE);
-//
-//                // Upload file to storage
-//                for (MultipartFile song:lstSongs) {
-//                    String MUSIC_PATH = Const.FPT_MUSIC_DIR + song.getOriginalFilename();
-//                    boolean result = con.storeFile(MUSIC_PATH, song.getInputStream());
-//                }
-//                con.logout();
-//                con.disconnect();
-//                // Store the file url to database
-//                songService.HandleUploadMultipleSong(lstSongs);
-//            }
-//        } catch (Exception e) {}
-//
-//        return "redirect:/";
-//    }
+    @PostMapping("/upload")
+    public String handleMultipleFileUpload(@RequestParam("lstSongs") List<MultipartFile> lstSongs,
+                                   RedirectAttributes redirectAttributes) {
+        String FTP_ADDRESS = Const.FPT_ADDRESS;
+        String LOGIN = Const.DATABASE_NAME;
+        String PSW = Const.FPT_PW;
+
+
+        FTPClient con = null;
+
+        try {
+            con = new FTPClient();
+            con.connect(FTP_ADDRESS);
+
+            if (con.login(LOGIN, PSW)) {
+                con.enterLocalPassiveMode(); // important!
+                con.setFileType(FTP.BINARY_FILE_TYPE);
+
+                // Upload file to storage
+                for (MultipartFile song:lstSongs) {
+                    String MUSIC_PATH = Const.FPT_MUSIC_DIR + song.getOriginalFilename();
+                    boolean result = con.storeFile(MUSIC_PATH, song.getInputStream());
+                }
+                con.logout();
+                con.disconnect();
+                // Store the file url to database
+                songService.HandleUploadMultipleSong(lstSongs);
+            }
+        } catch (Exception e) {}
+
+        return "redirect:/";
+    }
 }
