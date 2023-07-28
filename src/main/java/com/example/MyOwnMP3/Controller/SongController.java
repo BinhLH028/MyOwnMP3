@@ -1,14 +1,16 @@
 package com.example.MyOwnMP3.Controller;
 
 import com.example.MyOwnMP3.Common.Const;
-import com.example.MyOwnMP3.Model.Song;
+import com.example.MyOwnMP3.Common.MessageResponseBody;
 import com.example.MyOwnMP3.Service.SongService;
+import com.example.MyOwnMP3.Validator.AudioFileValidator;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,6 +22,9 @@ public class SongController {
 
     @Autowired
     private SongService songService;
+
+    @Autowired
+    private AudioFileValidator audioFileValidator;
     @GetMapping(value = "/getallsong")
     public ResponseEntity<?> GetAllSong() {
         return new ResponseEntity<>(songService.GetAllSong(), HttpStatus.OK);
@@ -37,6 +42,8 @@ public class SongController {
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
+
+
         String FTP_ADDRESS = Const.FPT_ADDRESS;
         String LOGIN = Const.DATABASE_NAME;
         String PSW = Const.FPT_PW;
@@ -71,11 +78,18 @@ public class SongController {
     }
 
     @PostMapping("/upload")
-    public String handleMultipleFileUpload(@RequestParam("lstSongs") List<MultipartFile> lstSongs,
-                                   RedirectAttributes redirectAttributes) {
+    public ResponseEntity<?> handleMultipleFileUpload(@RequestParam("lstSongs") List<MultipartFile> lstSongs,
+                                           RedirectAttributes redirectAttributes) throws MultipartException {
         String FTP_ADDRESS = Const.FPT_ADDRESS;
         String LOGIN = Const.DATABASE_NAME;
         String PSW = Const.FPT_PW;
+        try {
+            if (!audioFileValidator.IsValidContentType(lstSongs)) {
+                throw new MultipartException("Invalid content type");
+            }
+        } catch (MultipartException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
 
         FTPClient con = null;
@@ -99,7 +113,6 @@ public class SongController {
                 songService.HandleUploadMultipleSong(lstSongs);
             }
         } catch (Exception e) {}
-
-        return "redirect:/";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
