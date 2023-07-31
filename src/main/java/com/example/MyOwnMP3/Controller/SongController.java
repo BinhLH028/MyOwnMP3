@@ -7,6 +7,7 @@ import com.example.MyOwnMP3.Validator.AudioFileValidator;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping(value = "/API/song")
@@ -22,6 +24,9 @@ public class SongController {
 
     @Autowired
     private SongService songService;
+
+    @Autowired
+    MessageSource messageSource;
 
     @Autowired
     private AudioFileValidator audioFileValidator;
@@ -35,6 +40,7 @@ public class SongController {
         try{
             return new ResponseEntity<>(songService.GetSongsByName(n), HttpStatus.OK);
         } catch (Exception e) {
+
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -88,7 +94,8 @@ public class SongController {
                 throw new MultipartException("Invalid content type");
             }
         } catch (MultipartException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(messageSource.getMessage("01", null, Locale.getDefault()),
+                    HttpStatus.BAD_REQUEST);
         }
 
 
