@@ -40,7 +40,6 @@ public class SongController {
         try{
             return new ResponseEntity<>(songService.GetSongsByName(n), HttpStatus.OK);
         } catch (Exception e) {
-
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -97,7 +96,6 @@ public class SongController {
             return new ResponseEntity<>(messageSource.getMessage("01", null, Locale.getDefault()),
                     HttpStatus.BAD_REQUEST);
         }
-
 
         FTPClient con = null;
 
