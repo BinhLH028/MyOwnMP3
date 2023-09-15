@@ -20,6 +20,23 @@ public class SecurityConfiguration {
 
     private final AuthenticationProvider authenticationProvider;
 
+    private static final String[] AUTH_WHITELIST = {
+            "/API/AppUser/**",
+
+            // for Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-ui.html",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/webjars/**",
+
+            // for Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http
@@ -41,7 +58,8 @@ public class SecurityConfiguration {
             http
                     .csrf(csrf -> csrf.disable())
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/API/AppUser/**").permitAll()
+                            .requestMatchers(AUTH_WHITELIST
+                                    ).permitAll()
                             .anyRequest().authenticated()
                     )
                     .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
