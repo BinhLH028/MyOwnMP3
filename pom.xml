@@ -16,6 +16,16 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>sonatype-snapshots</id>
+			<name>Sonatype Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -101,6 +111,19 @@
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swaggerhub-maven-plugin</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+		<dependency>
+			<groupId>io.openapitools.swagger</groupId>
+			<artifactId>swagger-maven-plugin</artifactId>
+			<version>2.1.6</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>
@@ -116,6 +139,68 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>io.swagger</groupId>-->
+<!--				<artifactId>swaggerhub-maven-plugin</artifactId>-->
+<!--				<version>1.0.10</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>generate-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>download</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<api>open-api_definition</api>-->
+<!--							<owner>BinhLH028</owner>-->
+<!--							<version>v0</version>-->
+<!--							<outputFile>target/MusicAPIS.json</outputFile>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+<!--			<plugin>-->
+<!--				<groupId>io.swagger.core.v3</groupId>-->
+<!--				<artifactId>swagger-maven-plugin</artifactId>-->
+<!--				<version>2.0.5</version>-->
+<!--				<configuration>-->
+<!--					<outputFileName>MusicAPIS</outputFileName>-->
+<!--					<outputPath>${project.build.directory}</outputPath>-->
+<!--					<outputFormat>JSON</outputFormat>-->
+<!--					<resourcePackages>-->
+<!--						<package>test.Music</package>-->
+<!--					</resourcePackages>-->
+<!--					<prettyPrint>true</prettyPrint>-->
+<!--				</configuration>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>compile</phase>-->
+<!--						<goals>-->
+<!--							<goal>resolve</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+			<plugin>
+				<groupId>io.swagger</groupId>
+				<artifactId>swaggerhub-maven-plugin</artifactId>
+				<version>1.0.10</version>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>upload</goal>
+						</goals>
+						<configuration>
+							<api>MusicAPIS</api>
+							<owner>BinhLH028</owner>
+							<version>1.0.2</version>
+							<inputFile>target/MusicAPIS.json</inputFile>
+							<token>5c82e9c3-49a4-4078-864a-6042d52afbb4</token>
+							<uploadType>inputFile</uploadType>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
