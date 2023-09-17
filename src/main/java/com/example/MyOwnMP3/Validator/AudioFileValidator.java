@@ -17,12 +17,15 @@ public class AudioFileValidator{
         boolean isValid = true;
         for (MultipartFile file: files) {
             String contentType = file.getContentType();
+            System.out.println(contentType);
             if(!contentType.equals("audio/mpeg")
-                || !contentType.equals("audio/mp4")) {
+                && !contentType.equals("audio/mp4")
+                && !contentType.equals("audio/m4a")
+            ) {
                 isValid = false;
-                return isValid;
             }
         }
+        System.out.println(isValid);
         return isValid;
     }
 

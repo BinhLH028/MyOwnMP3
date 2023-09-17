@@ -3,11 +3,13 @@ E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Secutity\JwtAuthenticati
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Service\GenreService.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Controller\AlbumController.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Enum\Role.java
+E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\auth\AuthenticationResponse.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Common\Const.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Controller\ArtistController.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Model\Artist.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Model\Genre.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Service\ArtistService.java
+E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\auth\RegisterRequest.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Repository\PlaylistRepository.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Repository\AlbumRepository.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Service\SongService.java
@@ -19,8 +21,11 @@ E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Controller\PlaylistContr
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Config\WebConfig.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Service\JwtService.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Service\PlaylistService.java
+E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\auth\AuthenticationRequest.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Repository\ArtistRepository.java
+E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Service\AuthenticationService.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Repository\SongRepository.java
+E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Config\SecurityConfiguration.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Common\MessageResponseBody.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Repository\AppUserRepository.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Repository\GenreRepository.java
@@ -29,6 +34,7 @@ E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\MyOwnMp3.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Model\Song.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Controller\AppUserController.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Controller\MainController.java
+E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Config\SwaggerConfig.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Service\AlbumService.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Service\AppUserService.java
 E:\MyOwnMP3\MyOwnMP3\src\main\java\com\example\MyOwnMP3\Model\AppUser.java
