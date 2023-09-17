@@ -1,7 +1,6 @@
 package com.example.MyOwnMP3.Controller;
 
 import com.example.MyOwnMP3.Common.Const;
-import com.example.MyOwnMP3.Common.MessageResponseBody;
 import com.example.MyOwnMP3.Service.SongService;
 import com.example.MyOwnMP3.Validator.AudioFileValidator;
 import org.apache.commons.net.ftp.FTP;
@@ -44,50 +43,51 @@ public class SongController {
         }
     }
 
-    @PostMapping("/")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
-
-
-        String FTP_ADDRESS = Const.FPT_ADDRESS;
-        String LOGIN = Const.DATABASE_NAME;
-        String PSW = Const.FPT_PW;
-        String PATH = Const.FPT_MUSIC_DIR + file.getOriginalFilename();
-
-        FTPClient con = null;
-
-        try {
-            con = new FTPClient();
-            con.connect(FTP_ADDRESS);
-
-            if (con.login(LOGIN, PSW)) {
-                con.enterLocalPassiveMode(); // important!
-                con.setFileType(FTP.BINARY_FILE_TYPE);
-
-                // Upload file to storage
-                boolean result = con.storeFile(PATH, file.getInputStream());
-                con.logout();
-                con.disconnect();
-                redirectAttributes.addFlashAttribute("message",
-                        "You successfully uploaded " + file.getOriginalFilename() + "!");
-
-                // Store the file url to database
-                songService.HandleUploadSong(file.getOriginalFilename());
-            }
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message",
-                    "Could not upload " + file.getOriginalFilename() + "!");
-        }
-
-        return "redirect:/";
-    }
+//    @PostMapping("/")
+//    public String handleFileUpload(@RequestParam("file") MultipartFile file,
+//                                   RedirectAttributes redirectAttributes) {
+//
+//
+//        String FTP_ADDRESS = Const.FPT_ADDRESS;
+//        String LOGIN = Const.DATABASE_NAME;
+//        String PSW = Const.FPT_PW;
+//        String PATH = Const.FPT_MUSIC_DIR + file.getOriginalFilename();
+//
+//        FTPClient con = null;
+//
+//        try {
+//            con = new FTPClient();
+//            con.connect(FTP_ADDRESS);
+//
+//            if (con.login(LOGIN, PSW)) {
+//                con.enterLocalPassiveMode(); // important!
+//                con.setFileType(FTP.BINARY_FILE_TYPE);
+//
+//                // Upload file to storage
+//                boolean result = con.storeFile(PATH, file.getInputStream());
+//                con.logout();
+//                con.disconnect();
+//                redirectAttributes.addFlashAttribute("message",
+//                        "You successfully uploaded " + file.getOriginalFilename() + "!");
+//
+//                // Store the file url to database
+//                songService.HandleUploadSong(file.getOriginalFilename());
+//            }
+//        } catch (Exception e) {
+//            redirectAttributes.addFlashAttribute("message",
+//                    "Could not upload " + file.getOriginalFilename() + "!");
+//        }
+//
+//        return "redirect:/";
+//    }
 
     @PostMapping("/upload")
     public ResponseEntity<?> handleMultipleFileUpload(@RequestParam("lstSongs") List<MultipartFile> lstSongs,
                                            RedirectAttributes redirectAttributes) throws MultipartException {
-        String FTP_ADDRESS = Const.FPT_ADDRESS;
+        String FTP_ADDRESS = Const.FTP_ADDRESS;
         String LOGIN = Const.DATABASE_NAME;
-        String PSW = Const.FPT_PW;
+        String PSW = Const.FTP_PW;
+        System.out.println(PSW);
         try {
             if (!audioFileValidator.IsValidContentType(lstSongs)) {
                 throw new MultipartException("Invalid content type");
@@ -109,7 +109,7 @@ public class SongController {
 
                 // Upload file to storage
                 for (MultipartFile song:lstSongs) {
-                    String MUSIC_PATH = Const.FPT_MUSIC_DIR + song.getOriginalFilename();
+                    String MUSIC_PATH = Const.FTP_MUSIC_DIR + song.getOriginalFilename();
                     boolean result = con.storeFile(MUSIC_PATH, song.getInputStream());
                 }
                 con.logout();
