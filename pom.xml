@@ -102,6 +102,11 @@
 			<version>0.11.5</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.1.0</version>
@@ -140,6 +145,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
+<!--			Swagger Download-->
+
 <!--			<plugin>-->
 <!--				<groupId>io.swagger</groupId>-->
 <!--				<artifactId>swaggerhub-maven-plugin</artifactId>-->
@@ -159,6 +166,9 @@
 <!--					</execution>-->
 <!--				</executions>-->
 <!--			</plugin>-->
+
+<!--			Swagger generate from code-->
+
 <!--			<plugin>-->
 <!--				<groupId>io.swagger.core.v3</groupId>-->
 <!--				<artifactId>swagger-maven-plugin</artifactId>-->
@@ -181,27 +191,30 @@
 <!--					</execution>-->
 <!--				</executions>-->
 <!--			</plugin>-->
-			<plugin>
-				<groupId>io.swagger</groupId>
-				<artifactId>swaggerhub-maven-plugin</artifactId>
-				<version>1.0.10</version>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>upload</goal>
-						</goals>
-						<configuration>
-							<api>MusicAPIS</api>
-							<owner>BinhLH028</owner>
-							<version>1.0.2</version>
-							<inputFile>target/MusicAPIS.json</inputFile>
-							<token>5c82e9c3-49a4-4078-864a-6042d52afbb4</token>
-							<uploadType>inputFile</uploadType>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+
+<!--				Swagger upload-->
+
+<!--			<plugin>-->
+<!--				<groupId>io.swagger</groupId>-->
+<!--				<artifactId>swaggerhub-maven-plugin</artifactId>-->
+<!--				<version>1.0.10</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>generate-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>upload</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<api>MusicAPIS</api>-->
+<!--							<owner>BinhLH028</owner>-->
+<!--							<version>1.0.2</version>-->
+<!--							<inputFile>target/MusicAPIS.json</inputFile>-->
+<!--							<token>${env.SWAGGERHUB_APIKEY}</token>-->
+<!--							<uploadType>inputFile</uploadType>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

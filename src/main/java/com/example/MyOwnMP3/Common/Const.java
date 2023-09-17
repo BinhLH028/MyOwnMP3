@@ -6,6 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Const {
 
+    public  static String LOCAL_MAIL_LINK = "http://localhost:8080/API/AppUser/confirm?token=";
+    public  static String SERVER_MAIL_LINK = "https://myownmp3.onrender.com/API/AppUser/confirm?token=";
+
+    public static String REGEX_PATTERN = "^(.+)@(\\S+)$";
+
     //region Database
     public static String DB_USERNAME;
     public static String DB_PASSWORD;
@@ -46,5 +51,9 @@ public class Const {
     public void setMusicDir(String musicDir) {
         MUSIC_DIR = musicDir;
     }
+    //endregion
+
+    //region Mail
+
     //endregion
 }

@@ -1,4 +1,4 @@
-package com.example.MyOwnMP3.auth;
+package com.example.MyOwnMP3.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
