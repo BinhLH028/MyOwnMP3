@@ -21,6 +21,7 @@ public class AudioFileValidator{
             if(!contentType.equals("audio/mpeg")
                 && !contentType.equals("audio/mp4")
                 && !contentType.equals("audio/m4a")
+                && !contentType.equals("audio/x-m4a")
             ) {
                 isValid = false;
             }
