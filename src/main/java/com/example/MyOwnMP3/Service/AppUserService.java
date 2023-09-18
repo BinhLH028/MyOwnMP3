@@ -52,7 +52,7 @@ public class AppUserService {
                 confirmationToken);
 
         // Sendmail
-        String link = Const.SERVER_MAIL_LINK;
+        String link = Const.SERVER_MAIL_LINK + token;
         emailSender.send(
                 user.getEmail(),
                 buildEmail(user.getUsername(), link));
