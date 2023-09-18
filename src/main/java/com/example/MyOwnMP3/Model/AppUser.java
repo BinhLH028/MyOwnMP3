@@ -29,6 +29,9 @@ public class AppUser implements UserDetails {
     @Column(name = "pass_word")
     private String password;
 
+    @Column(name = "is_enable")
+    private Boolean enabled = false;
+
     @Column(name = "email")
     private String email;
 
@@ -80,7 +83,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
     public AppUser(String userName, String password, String email, Role role) {
