@@ -24,6 +24,9 @@ public class Song {
     private Integer duration;
     @Column(name = "song_url")
     private String songUrl;
+
+    @Column(name = "cover_art_url")
+    private String coverArtUrl;
     @Column(name = "artist_id")
     private Integer artistId;
     @Column(name = "genre_id")

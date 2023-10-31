@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Locale;
-
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/API/song")
 public class SongController {

@@ -20,7 +20,7 @@ public class AppUserController {
     private AuthenticationService authenticationService;
     @Autowired
     MessageSource messageSource;
-    @PostMapping(path = "/register")
+    @PostMapping(value = "/register")
     public ResponseEntity<?> register(
             @RequestBody RegisterRequest request) {
         try {
@@ -30,14 +30,14 @@ public class AppUserController {
         }
     }
 
-    @PostMapping(path = "/authenticate")
+    @PostMapping(value = "/authenticate")
     public ResponseEntity<?> authenticate(
             @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
 
-    @PostMapping(path = "/confirm")
+    @PostMapping(value = "/confirm")
     public ResponseEntity<AuthenticationResponse> ConfirmRegistration(
             @RequestParam("token") String token) {
         return new ResponseEntity(authenticationService.confirmToken(token), HttpStatus.OK);

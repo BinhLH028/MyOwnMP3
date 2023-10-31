@@ -11,6 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -22,6 +24,7 @@ public class SecurityConfiguration {
 
     private static final String[] AUTH_WHITELIST = {
             "/API/AppUser/**",
+            "/API/song/**",
 
             // for Swagger UI v2
             "/v2/api-docs",
@@ -56,7 +59,8 @@ public class SecurityConfiguration {
 //        return http.build();
         return
             http
-                    .csrf(csrf -> csrf.disable())
+                    .csrf()
+                    .disable()
                     .authorizeHttpRequests(auth -> auth
                             .requestMatchers(AUTH_WHITELIST
                                     ).permitAll()
@@ -66,9 +70,9 @@ public class SecurityConfiguration {
                     .authenticationProvider(authenticationProvider)
                     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
 //                    .oauth2ResourceServer((oauth2) -> oauth2
-//                            .jwt(Customizer.withDefaults())
+//                            .jwt(withDefaults())
 //                    )
-//                    .httpBasic(Customizer.withDefaults())
+//                    .httpBasic(withDefaults())
                     .build();
     }
 }

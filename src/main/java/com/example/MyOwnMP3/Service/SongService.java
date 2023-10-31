@@ -47,8 +47,12 @@ public class SongService {
 
     public void HandleUploadMultipleSong(List<MultipartFile> lstFiles) {
         List<Song>  lstSongs = new ArrayList<>();
+        String title = "";
         for (MultipartFile song:lstFiles) {
-            lstSongs.add(new Song(song.getOriginalFilename(),
+            title = song.getOriginalFilename();
+            title = title.substring(0,title.indexOf("-"));
+
+            lstSongs.add(new Song(title,
                     Const.MUSIC_DIR + ConvertStringToURL(song.getOriginalFilename()),1));
         }
         songRepository.saveAll(lstSongs);
